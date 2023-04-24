@@ -22,9 +22,5 @@ class Logger {
     public function log($result) {
         file_put_contents($this->logPath, $this->generateLine($result), FILE_APPEND);
     }
-       
-
 }
-
-
 ?>

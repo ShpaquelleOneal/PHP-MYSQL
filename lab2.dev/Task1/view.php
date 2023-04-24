@@ -49,7 +49,7 @@
     </form>
 
     <section id="main">
-        <?php if (sizeof($results) > 0) {
+        <?php if (sizeof($results) > 0) { // if the ass array is not empty, show the table with query
         ?>
             <table style="border: 1px solid black;">
                 <tr style="border: 1px solid black;">
@@ -60,12 +60,12 @@
 
                 <!-- TODO: Output a table row for each result line -->
                 <?php
-                    foreach($results as $row) {  // for each row:
+                    foreach($results as $row) {  // for each array row:
                         ?>
                         <tr style="border: 1px solid black;">
-                            <th style="border: 1px solid black;"><?php echo $row["manufacturer"]; ?></th>
-                            <th style="border: 1px solid black;"><?php echo $row["model"]; ?></th>
-                            <th style="border: 1px solid black;"><?php echo $row["count"]; ?></th>
+                            <td style="border: 1px solid black;"><?php echo $row["manufacturer"]; ?></td>
+                            <td style="border: 1px solid black;"><?php echo $row["model"]; ?></td>
+                            <td style="border: 1px solid black;"><?php echo $row["count"]; ?></td>
                         </tr>
                         <?php
                     }
