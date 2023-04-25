@@ -18,10 +18,10 @@
             @foreach ($countries as $country)
                 <li>
                     {{ $country->code }} - 
-                    <a href="{{ route('manufacturers.index', ['countryslug' => $country->code]) }}">{{ $country->name }}</a>
+                    <a href="{{ url($country->code . '/manufacturer') }}">{{ $country->name }}</a>
 
                     <form method="POST"
-                        action="{{ route('countries.destroy', $country->id) }}">
+                    action="{{ route('country.destroy', $country->id) }}">
                         @csrf
                         @method('DELETE')
                         <button type="submit" value="delete">Delete</button>
