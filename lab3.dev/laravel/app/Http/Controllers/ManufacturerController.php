@@ -21,4 +21,23 @@ class ManufacturerController extends Controller
         
         return view('manufacturers', ['country' => $country, 'manufacturers' => $manufacturers]);
     }
+
+    public function create($countryslug)
+    {
+        $country = Country::where('code','=', $countryslug)->first();
+        return view('manufacturer_new', compact('country'));
+    }
+    
+    public function store(Request $request)
+    {
+        $manufacturer = new Manufacturer();
+        $manufacturer->name = $request->manufacturer_name;
+        $manufacturer->country_id = $request->country_id;
+        $manufacturer->save();
+
+        #to perform a redirect back, we need country code from ID
+        $country = Country::findOrFail($request->country_id);
+        $action = action([ManufacturerController::class, 'index'], ['countryslug' => $country->code]);
+        return redirect($action);
+    }
 }

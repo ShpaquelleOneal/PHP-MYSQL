@@ -14,13 +14,13 @@
         <p style="color: red;"> There are no records in the database!</p>
     @else
         <ul>
-
             @foreach ($manufacturers as $manufacturer)
                 <li>
                    {{ $manufacturer->name }}
                 </li>
             @endforeach
         </ul>
+        <a href="{{ action([App\Http\Controllers\ManufacturerController::class, 'create'],['countryslug' => $country->code])}}">Add new manufacturer</a>
     @endif
 </body>
 
