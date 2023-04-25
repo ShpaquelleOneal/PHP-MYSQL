@@ -40,4 +40,24 @@ class ManufacturerController extends Controller
         $action = action([ManufacturerController::class, 'index'], ['countryslug' => $country->code]);
         return redirect($action);
     }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        $manufacturer = Manufacturer::findOrFail($id);
+        return view('manufacturer_edit', compact('manufacturer'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        $manufacturer = Manufacturer::findOrFail($id);
+        $manufacturer->name = $request->manufacturer_name;
+        $manufacturer->save();
+        return redirect(action([ManufacturerController::class, 'index'], ['countryslug' => $manufacturer->country->code]));
+    }
 }
