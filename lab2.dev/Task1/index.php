@@ -8,13 +8,6 @@
     $password = "";
     $mysqli = new mysqli($server, $user, $password, $database);
 
-    // Check connection
-    /*
-    if ($mysqli->connect_error) {
-        die("Connection failed: " . $mysqli->connect_error);
-    }
-
-    echo "Connected successfully";*/
 
     //TODO: Fill the array of manufacturer IDs and titles (e.g. "33" => "Alfa Romeo")
     $manufacturers = array();

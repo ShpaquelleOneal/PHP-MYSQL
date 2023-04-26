@@ -17,7 +17,7 @@
             @foreach ($manufacturers as $manufacturer)
                 <li>
                     <a href="{{ route('models', [$manufacturer->id]) }}">{{ $manufacturer->name }}</a>
-                    <a href=""><button value="">Edit</button></a>
+                    <a href="{{ route('manufacturer.edit', [$manufacturer->id])}}"><button value="">Edit</button></a>
                 </li>
             @endforeach
         </ul>
