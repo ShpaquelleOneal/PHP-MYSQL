@@ -21,8 +21,8 @@
                 </li>
             @endforeach
         </ul>
-        <a href="{{ action([App\Http\Controllers\ManufacturerController::class, 'create'],['countryslug' => $country->code])}}">Add new manufacturer</a>
     @endif
+    <a href="{{ action([App\Http\Controllers\ManufacturerController::class, 'create'],['countryslug' => $country->code])}}">Add new manufacturer</a>
 </body>
 
 </html>

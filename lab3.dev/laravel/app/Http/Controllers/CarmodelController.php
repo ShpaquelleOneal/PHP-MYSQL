@@ -21,9 +21,10 @@ class CarmodelController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create($man_id)
     {
-        //
+        $manufacturer = Manufacturer::where('id','=', $man_id)->first();
+        return view('model_new', compact('manufacturer'));
     }
 
     /**
@@ -31,7 +32,13 @@ class CarmodelController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $carmodel = new Carmodel();
+        $carmodel->name = $request->model_name;
+        $carmodel->manufacturer_id = $request->man_id;
+        $carmodel->save();
+
+        $action = action([CarmodelController::class, 'index'], ['id' => $request->man_id]);
+        return redirect($action);
     }
 
     /**

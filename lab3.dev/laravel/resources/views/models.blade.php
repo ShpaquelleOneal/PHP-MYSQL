@@ -18,7 +18,7 @@
                 </li>
             @endforeach
         </ul>
-        
     @endif
+    <a href="{{ action([App\Http\Controllers\CarmodelController::class, 'create'],['id' => $manufacturer->id])}}">Add new model</a>
 </body>
 </html>
