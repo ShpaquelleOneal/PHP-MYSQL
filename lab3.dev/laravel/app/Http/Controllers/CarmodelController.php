@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Country;
 use Illuminate\Http\Request;
+use App\Models\Carmodel;
+use App\Models\Manufacturer;
 
-class CountryController extends Controller
+class CarmodelController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($man_id)
     {
-        // display a listing of the countries
-        $countries = Country::all();
-        return view('countries', compact('countries'));
+        $manufacturer = Manufacturer::findOrFail($man_id);
+        $carmodels = Carmodel::where('manufacturer_id','=', $man_id)->get();
+        return view('models', compact('manufacturer', 'carmodels'));
     }
 
     /**
@@ -62,14 +63,6 @@ class CountryController extends Controller
      */
     public function destroy(string $id)
     {
-        Country::findOrfail($id)->delete();
-        return redirect('country/');
-    }
-
-    public function manufacturers($code)
-    {
-        $country = Country::where('code', $code)->firstOrFail();
-        $manufacturers = $country->manufacturers;
-        return view('manufacturers.index', compact('country', 'manufacturers'));
+        //
     }
 }

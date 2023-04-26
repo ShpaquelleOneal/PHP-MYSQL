@@ -60,4 +60,12 @@ class ManufacturerController extends Controller
         $manufacturer->save();
         return redirect(action([ManufacturerController::class, 'index'], ['countryslug' => $manufacturer->country->code]));
     }
+
+    /*public function models($id)
+    {
+        $manufacturer = Manufacturer::findOrFail($id);
+        $models = $manufacturer->carModels;
+        return view('carModels.index', compact('manufacturer', 'models'));
+    }*/
+
 }
