@@ -23,6 +23,8 @@
             <?php if (isset($error)) { ?>
                 <div class="error">
                     <?php echo htmlspecialchars($error); ?>
+
+                    
                 </div>
             <?php } ?>
 
