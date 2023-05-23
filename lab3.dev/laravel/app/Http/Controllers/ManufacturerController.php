@@ -32,6 +32,8 @@ class ManufacturerController extends Controller
     {
         $manufacturer = new Manufacturer();
         $manufacturer->name = $request->manufacturer_name;
+        $manufacturer->founded = $request->manufacturer_founded;
+        $manufacturer->website = $request->manufacturer_website;
         $manufacturer->country_id = $request->country_id;
         $manufacturer->save();
 

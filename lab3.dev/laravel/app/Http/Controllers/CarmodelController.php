@@ -34,6 +34,8 @@ class CarmodelController extends Controller
     {
         $carmodel = new Carmodel();
         $carmodel->name = $request->model_name;
+        $carmodel->production_started = $request->model_production_date;
+        $carmodel->min_price = $request->model_starting_price;
         $carmodel->manufacturer_id = $request->man_id;
         $carmodel->save();
 
