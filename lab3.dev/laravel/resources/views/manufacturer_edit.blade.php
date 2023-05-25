@@ -10,6 +10,16 @@
 </head>
 
 <body>
+  <!-- Add this section to display validation errors -->
+  @if ($errors->any())
+  <div class="alert alert-danger">
+      <ul>
+          @foreach ($errors->all() as $error)
+              <li style="color: red;">{{ $error }}</li>
+          @endforeach
+      </ul>
+  </div>
+  @endif
   <h1>Editing manufacturer {{ $manufacturer->name }}</h1>
   <form method="POST"
       action={{ action([App\Http\Controllers\ManufacturerController::class, 'update'], [ 'manufacturer' => $manufacturer]) }}>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Country;
 use App\Models\Manufacturer;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class ManufacturerController extends Controller
 {
@@ -30,10 +31,15 @@ class ManufacturerController extends Controller
     
     public function store(Request $request)
     {
+        $validatedData = $request->validate([
+            'manufacturer_name' => ['required', 'string', 'max:255', Rule::unique('manufacturers')],
+            'manufacturer_founded' => ['required', 'integer', 'min:1900', 'max:'.date('Y')],
+            'manufacturer_website' => ['nullable', 'url'],
+        ]);
         $manufacturer = new Manufacturer();
-        $manufacturer->name = $request->manufacturer_name;
-        $manufacturer->founded = $request->manufacturer_founded;
-        $manufacturer->website = $request->manufacturer_website;
+        $manufacturer->name = $validatedData['manufacturer_name'];
+        $manufacturer->founded = $validatedData['manufacturer_founded'];
+        $manufacturer->website = $validatedData['manufacturer_website'];
         $manufacturer->country_id = $request->country_id;
         $manufacturer->save();
 

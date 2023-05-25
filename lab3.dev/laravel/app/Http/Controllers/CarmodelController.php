@@ -32,10 +32,15 @@ class CarmodelController extends Controller
      */
     public function store(Request $request)
     {
+        $validatedData = $request->validate([
+            'model_starting_price' => ['numeric','min:0'],
+            'model_production_date' => ['integer', 'min:1990'],
+        ]);
+
         $carmodel = new Carmodel();
         $carmodel->name = $request->model_name;
-        $carmodel->production_started = $request->model_production_date;
-        $carmodel->min_price = $request->model_starting_price;
+        $carmodel->production_started = $validatedData['model_production_date'];
+        $carmodel->min_price = $validatedData['model_starting_price'];
         $carmodel->manufacturer_id = $request->man_id;
         $carmodel->save();
 

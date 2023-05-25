@@ -11,18 +11,28 @@
 
 <body>
     <h1>New manufacturer in {{ $country->name }}</h1>
+    <!-- Add this section to display validation errors -->
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li style="color: red;">{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
     <form method="POST" action={{ action([App\Http\Controllers\ManufacturerController::class, 'store']) }}>
         @csrf
         <input type="hidden" name="country_id" value="{{ $country->id }}">
 
         <label for='manufacturer_name'>Manufacturer name</label>
-        <input type="text" name="manufacturer_name" id="manufacturer_name">
+        <input type="text" name="manufacturer_name" id="manufacturer_name" value="{{ old('manufacturer_name') }}">
 
         <label for='manufacturer_founded'>Founded year</label>
-        <input type="text" name="manufacturer_founded" id="manufacturer_founded">
+        <input type="text" name="manufacturer_founded" id="manufacturer_founded" value="{{ old('manufacturer_founded') }}">
 
         <label for='manufacturer_website'>Website</label>
-        <input type="text" name="manufacturer_website" id="manufacturer_website">
+        <input type="text" name="manufacturer_website" id="manufacturer_website" value="{{ old('manufacturer_website') }}">
         
         <button type="submit" value="Add">Save</button>
     </form>

@@ -9,17 +9,20 @@
 </head>
 <body>
     <h1>Car models for {{$manufacturer->name}}</h1>
+    <a href="{{ url('/country') }}"><button>Go back</button></a>
+
+
     @if (count($carmodels) == 0)
         <p style="color: red;"> There are no records in the database!</p>
     @else
         <ul>
             @foreach ($carmodels as $carmodel)
                 <li>
-                    {{ $carmodel->name }}
+                    {{ $carmodel->name }} {{$carmodel->production_started}} {{$carmodel->min_price}}
                 </li>
             @endforeach
         </ul>
     @endif
-    <a href="{{ action([App\Http\Controllers\CarmodelController::class, 'create'],['id' => $manufacturer->id])}}">Add new model</a>
+    <a href="{{ action([App\Http\Controllers\CarmodelController::class, 'create'],['id' => $manufacturer->id])}}"><button>New model</button></a>
 </body>
 </html>
