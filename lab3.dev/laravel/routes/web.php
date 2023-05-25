@@ -16,3 +16,4 @@ Route::get('manufacturer/{id}/edit', [ManufacturerController::class, 'edit'])->n
 Route::get('manufacturer/{id}/models', [CarmodelController::class, 'index'])->name('models');
 Route::get('manufacturer/{id}/models/create', [CarmodelController::class, 'create']);
 Route::post('manufacturer/{id}/models', [CarmodelController::class, 'store']);
+Route::get('model/{id}/edit', [CarmodelController::class, 'edit'])->name('model.edit');

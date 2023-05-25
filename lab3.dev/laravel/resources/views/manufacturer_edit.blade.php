@@ -25,15 +25,20 @@
       action={{ action([App\Http\Controllers\ManufacturerController::class, 'update'], [ 'manufacturer' => $manufacturer]) }}>
       @csrf
       @method('put')
-      <label for='manufacturer_name'>Manufacturer name</label>
-      <input type="text" name="manufacturer_name" id="manufacturer_name" value="{{ $manufacturer->name }}">
-
-      <label for='manufacturer_founded'>Founded year</label>
-      <input type="text" name="manufacturer_founded" id="manufacturer_founded" value="{{ $manufacturer->founded }}">
-
-      <label for='manufacturer_website'>Website</label>
-      <input type="text" name="manufacturer_website" id="manufacturer_website" value="{{ $manufacturer->website }}">
-
+      <ul>
+        <li>
+          <label for='name'>Manufacturer name</label>
+          <input type="text" name="name" id="name" value="{{ $manufacturer->name }}">
+        </li>
+        <li>
+          <label for='founded'>Founded year</label>
+          <input type="text" name="founded" id="founded" value="{{ $manufacturer->founded }}">
+        </li>
+        <li>
+          <label for='website'>Website</label>
+          <input type="text" name="website" id="website" value="{{ $manufacturer->website }}">
+        </li>
+      </ul>
       <button type="submit" value="Update">Save changes</button>
   </form>
 </body>

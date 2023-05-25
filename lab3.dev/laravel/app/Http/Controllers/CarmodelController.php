@@ -33,14 +33,14 @@ class CarmodelController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'model_starting_price' => ['numeric','min:0'],
-            'model_production_date' => ['integer', 'min:1990'],
+            'starting_price' => ['numeric','min:0'],
+            'production_date' => ['integer', 'min:1990'],
         ]);
 
         $carmodel = new Carmodel();
         $carmodel->name = $request->model_name;
-        $carmodel->production_started = $validatedData['model_production_date'];
-        $carmodel->min_price = $validatedData['model_starting_price'];
+        $carmodel->production_started = $validatedData['production_date'];
+        $carmodel->min_price = $validatedData['starting_price'];
         $carmodel->manufacturer_id = $request->man_id;
         $carmodel->save();
 
@@ -49,19 +49,12 @@ class CarmodelController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
-        //
+        $carmodel = Carmodel::findOrFail($id);
+        return view('model_edit', compact('carmodel'));
     }
 
     /**
@@ -69,14 +62,17 @@ class CarmodelController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
-    }
+        $validatedData = $request->validate([
+            'starting_price' => ['numeric','min:0'],
+            'production_date' => ['integer', 'min:1990'],
+        ]);
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        $carmodel = Carmodel::findOrFail($id);
+        $carmodel->name = $request->model_name;
+        $carmodel->production_started = $validatedData['production_date'];
+        $carmodel->min_price = $validatedData['starting_price'];
+        $carmodel->manufacturer_id = $request->man_id;
+        $carmodel->save();
+        return redirect(action([CarmodelController::class, 'index'], ['man_id' => $carmodel->manufacturer_id]));
     }
 }

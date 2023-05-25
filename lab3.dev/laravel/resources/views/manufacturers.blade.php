@@ -11,7 +11,7 @@
 
 <body>
     <h1>Manufacturers in {{$country->name}}</h1>
-    <a href="{{ url('/country') }}"><button>Go back</button></a>
+    <a href="{{ url('/country') }}"><button>< Countries</button></a>
     @if (count($manufacturers) == 0)
         <p style="color: red;"> There are no records in the database!</p>
     @else

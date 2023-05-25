@@ -9,7 +9,7 @@
 </head>
 <body>
     <h1>Car models for {{$manufacturer->name}}</h1>
-    <a href="{{ url('/country') }}"><button>Go back</button></a>
+    <a href="{{ url('/country') }}"><button>< Countries</button></a>
 
 
     @if (count($carmodels) == 0)
@@ -19,6 +19,7 @@
             @foreach ($carmodels as $carmodel)
                 <li>
                     {{ $carmodel->name }} {{$carmodel->production_started}} {{$carmodel->min_price}}
+                    <a href="{{ route('model.edit', ['id' => $carmodel->id])}}"><button value="">Edit</button></a>
                 </li>
             @endforeach
         </ul>

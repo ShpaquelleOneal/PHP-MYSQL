@@ -32,14 +32,14 @@ class ManufacturerController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'manufacturer_name' => ['required', 'string', 'max:255', Rule::unique('manufacturers')],
-            'manufacturer_founded' => ['required', 'integer', 'min:1900', 'max:'.date('Y')],
-            'manufacturer_website' => ['nullable', 'url'],
+            'name' => ['required', 'string', 'max:255', Rule::unique('manufacturers')],
+            'founded' => ['required', 'integer', 'min:1900', 'max:'.date('Y')],
+            'website' => ['nullable', 'url'],
         ]);
         $manufacturer = new Manufacturer();
-        $manufacturer->name = $validatedData['manufacturer_name'];
-        $manufacturer->founded = $validatedData['manufacturer_founded'];
-        $manufacturer->website = $validatedData['manufacturer_website'];
+        $manufacturer->name = $validatedData['name'];
+        $manufacturer->founded = $validatedData['founded'];
+        $manufacturer->website = $validatedData['website'];
         $manufacturer->country_id = $request->country_id;
         $manufacturer->save();
 
@@ -63,17 +63,18 @@ class ManufacturerController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $validatedData = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'founded' => ['required', 'integer', 'min:1900', 'max:'.date('Y')],
+            'website' => ['nullable', 'url'],
+        ]);
+
         $manufacturer = Manufacturer::findOrFail($id);
-        $manufacturer->name = $request->manufacturer_name;
+        $manufacturer->name = $validatedData['name'];
+        $manufacturer->founded = $validatedData['founded'];
+        $manufacturer->website = $validatedData['website'];
         $manufacturer->save();
         return redirect(action([ManufacturerController::class, 'index'], ['countryslug' => $manufacturer->country->code]));
     }
-
-    /*public function models($id)
-    {
-        $manufacturer = Manufacturer::findOrFail($id);
-        $models = $manufacturer->carModels;
-        return view('carModels.index', compact('manufacturer', 'models'));
-    }*/
 
 }
