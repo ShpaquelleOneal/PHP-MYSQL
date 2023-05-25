@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <h1>Edit {{ $carmodel->name }} carmodel</h1>
+    <h1>Edit {{ $carmodel->name }} </h1>
     <!-- Add this section to display validation errors -->
     @if ($errors->any())
     <div class="alert alert-danger">
@@ -23,8 +23,9 @@
     @endif
     <a href="{{ route('models', [$carmodel->manufacturer_id]) }}"><button>Go back</button></a>
     <form method="POST"
-      action={{ action([App\Http\Controllers\CarmodelController::class, 'update'], [ 'id' => $carmodel->id]) }}>
+      action={{ action([App\Http\Controllers\CarmodelController::class, 'update'], [ 'carmodel' => $carmodel]) }}>
         @csrf
+        @method('put')
         <ul>
             <li>
                 <input type="hidden" name="man_id" value="{{ $carmodel->manufacturer_id }}">

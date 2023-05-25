@@ -38,7 +38,7 @@ class CarmodelController extends Controller
         ]);
 
         $carmodel = new Carmodel();
-        $carmodel->name = $request->model_name;
+        $carmodel->name = $request->name;
         $carmodel->production_started = $validatedData['production_date'];
         $carmodel->min_price = $validatedData['starting_price'];
         $carmodel->manufacturer_id = $request->man_id;
@@ -68,11 +68,11 @@ class CarmodelController extends Controller
         ]);
 
         $carmodel = Carmodel::findOrFail($id);
-        $carmodel->name = $request->model_name;
+        $carmodel->name = $request->name;
         $carmodel->production_started = $validatedData['production_date'];
         $carmodel->min_price = $validatedData['starting_price'];
         $carmodel->manufacturer_id = $request->man_id;
         $carmodel->save();
-        return redirect(action([CarmodelController::class, 'index'], ['man_id' => $carmodel->manufacturer_id]));
+        return redirect(action([CarmodelController::class, 'index'], ['id' => $carmodel->manufacturer_id]));
     }
 }
