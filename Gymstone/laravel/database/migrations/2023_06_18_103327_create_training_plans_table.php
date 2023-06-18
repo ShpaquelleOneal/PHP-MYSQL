@@ -15,10 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('plan_name');
             $table->string('plan_type');
-            $table->string('subscribers');
             $table->string('duration');
-            $table->double('subscribers');
+            $table->foreignId('exercises_id')->constrained()->references('id')->on('exercises');
             $table->timestamps();
+
+            // compound key
+            $table->unique(['id','exercises_id']);
         });
     }
 
