@@ -16,11 +16,10 @@ return new class extends Migration
             $table->string('plan_name');
             $table->string('plan_type');
             $table->string('duration');
-            $table->foreignId('exercises_id')->constrained()->references('id')->on('exercises');
+            $table->foreignId('exercise_id')->constrained('exercises')->cascadeOnDelete();
             $table->timestamps();
 
-            // compound key
-            $table->unique(['id','exercises_id']);
+            $table->unique(['id','exercise_id']);
         });
     }
 

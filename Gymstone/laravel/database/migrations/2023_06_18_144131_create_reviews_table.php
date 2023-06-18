@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('comments', function (Blueprint $table) {
+        Schema::create('review', function (Blueprint $table) {
             $table->id();
-            $table->foreign('training_plan_id')->references('id')->on('training_plans')->constrained()->cascadeOnDelete();
-            $table->foreign('user_id')->references('id')->on('users')->constrained()->cascadeOnDelete();
+            $table->foreignId('training_plan_id')->constrained('training_plans')->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->integer('rating');
-            $table->string('comment_descr');
+            $table->string('review_descr');
             $table->timestamps();
 
-            // compound key
             $table->unique(['training_plan_id', 'user_id']);
 
         });
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('comments');
+        Schema::dropIfExists('reviews');
     }
 };
