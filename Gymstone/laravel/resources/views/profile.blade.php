@@ -8,36 +8,32 @@
     <header>
         <div class="top-bar">
             <div class="logo-container">
-                <img src="gymstone-logo.png" alt="GYMSTONE Logo" class="logo">
-                <h1 class="logo-text">GYMSTONE</h1>
+                <img src="{{ asset('images/Gymstone_logo.png') }}" alt="GYMSTONE Logo" class="logo">
+                <a href="{{ route('profile') }}" class='logo-text'><h1>GYMSTONE - {{$user->name}}</h1></a>
             </div>
             <nav>
                 <ul>
-                    <li><a class="active" href="#">User Name</a></li>
-                    <li><a href="#">Training Plans</a></li>
-                    <li><a href="#">Training History</a></li>
+                    <li><a class="active" href="{{ route('profile') }}">Profile</a></li>
+                    <li><a href="{{ route('exercises') }}">Exercises</a></li>
+                    <li><a href="{{ route('history') }}">Training History</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <section class="profile">
-        <h1>Welcome to My Gym Profile!</h1>
+        <h1>Welcome back to Gymstone!</h1>
         <div class="profile-info">
-            <img src="profile-pic.jpg" alt="Profile Picture">
             <div class="info">
-                <h2>User Name</h2>
-                <p><strong>Age:</strong> 25</p>
-                <p><strong>Location:</strong> City, Country</p>
-                <p><strong>Bio:</strong> I'm passionate about fitness and living a healthy lifestyle. I enjoy weightlifting, HIIT workouts, and yoga. Looking forward to connecting with fellow fitness enthusiasts!</p>
+                <h2></h2>
             </div>
         </div>
 
-        <h2>Training Plans</h2>
+        <h2>Favorite Exercises</h2>
         <ul class="training-plans">
-            <li>Full-Body Strength Training</li>
-            <li>HIIT Cardio Blast</li>
-            <li>Yoga for Flexibility</li>
+            <li>.</li>
+            <li>.</li>
+            <li>.</li>
         </ul>
 
         <h2>Training History</h2>
