@@ -14,6 +14,12 @@ class Exercise extends Model
     public function trainingPlan(){
         return $this->hasMany(TrainingPlan::class);
     }
+
+    public function history()
+    {
+        return $this->hasMany(History::class);
+    }
+    
        
 
 }

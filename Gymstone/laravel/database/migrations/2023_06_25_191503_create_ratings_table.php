@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('training_plans', function (Blueprint $table) {
-            $table->id();
-            $table->string('plan_name');
-            $table->string('plan_type');
-            $table->string('duration');
+        Schema::create('ratings', function (Blueprint $table) {
             $table->foreignId('exercise_id')->constrained('exercises')->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            $table->decimal('stars', 3, 1)->unsigned()->nullable();
             $table->timestamps();
 
-            $table->unique(['id','exercise_id']);
+            //$table->checkConstraint('stars_check', 'stars >= 0 AND stars <= 10');
+            $table->primary(['exercise_id', 'user_id']);
         });
     }
 
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('training_plans');
+        Schema::dropIfExists('ratings');
     }
 };

@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('review', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('training_plan_id')->constrained('training_plans')->cascadeOnDelete();
+        Schema::create('histories', function (Blueprint $table) {
+            $table->integer('training_id');
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
-            $table->integer('rating');
-            $table->string('review_descr');
+            $table->foreignId('exercise_id')->constrained('exercises')->cascadeOnDelete();
+            $table->decimal('duration', 8, 2);
             $table->timestamps();
 
-            $table->unique(['training_plan_id', 'user_id']);
+            $table->primary(['training_id', 'user_id', 'exercise_id'  ]);
 
         });
     }
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('reviews');
+        Schema::dropIfExists('histories');
     }
 };

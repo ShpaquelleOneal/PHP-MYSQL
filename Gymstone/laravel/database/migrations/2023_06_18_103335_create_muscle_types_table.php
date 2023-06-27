@@ -6,14 +6,15 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+    /**
+     * Run the migrations.
+     */
     public function up(): void
     {
-        Schema::create('exercises', function (Blueprint $table) {
+        Schema::create('muscle_types', function (Blueprint $table) {
             $table->id();
-            $table->string('exer_name')->unique();
-            //$table->string('muscle_type');
-            $table->foreignId('muscle_type_id')->constrained('muscle_types')->cascadeOnDelete();
-            $table->longText('exer_description');
+            $table->string('muscle_name')->unique();
+            $table->longText('muscle_desc');
             $table->timestamps();
         });
     }
@@ -23,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('exercises');
+        Schema::dropIfExists('muscle_types');
     }
 };
