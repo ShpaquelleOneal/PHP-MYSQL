@@ -17,6 +17,9 @@
             <a href="{{ route('login') }}">Login</a>
             <a href="{{ route('register') }}">Register</a>
         </div>
+        <div class="image">
+            <img src="{{ asset('images/Gymstone_logo.png') }}" alt="GYMSTONE Logo">
+        </div>
     </main>
 </body>
 </html>

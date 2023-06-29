@@ -67,8 +67,8 @@ nav ul li a.active {
 }
 
 .profile-info img {
-    width: 100px;
-    height: 100px;
+    width: 50%;
+    height: 50%;
     border-radius: 50%;
     margin-right: 20px;
 }
@@ -143,3 +143,66 @@ main {
 .links a:hover {
     background-color: rgb(46, 0, 79);
 }
+
+.image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh; /* Adjust the height based on your needs */
+}
+
+.image img {
+    width: 20%; /* Adjust the size as needed */
+    height: auto; /* Maintain aspect ratio */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+}
+
+thead {
+    background-color: #333;
+    color: #fff;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tbody tr:hover {
+    background-color: #ddd;
+}
+
+.sort-buttons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  
+  .sort-buttons button {
+    padding: 8px 16px;
+    background-color: indigo;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  .sort-buttons button:hover {
+    background-color: darkblue;
+  }
+  
+  .sort-buttons button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2);
+  }

@@ -24,12 +24,32 @@
     <section class="exercises">
 
         <h2>All Exercises</h2>
-        <ul class="training-plans">
-            <li>.</li>
-            <li>.</li>
-            <li>.</li>
-        </ul>
-
+        <div class="sort-buttons">
+            <a href="{{ route('exercises') }}" class="sort-button"><button>All</button></a>
+            @foreach($muscles as $muscle)
+                <a href="{{ route('exercises', ['muscle_type_id' => $muscle->id]) }}" class="sort-button">
+                    <button>{{ $muscle->muscle_name }}</button>
+                </a>
+            @endforeach
+        </div>
+        <table>
+            <thead>
+            <tr>
+                <th>Exercise Name</th>
+                <th>Muscle Type</th>
+                <th>Description</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($exercises as $exercise)
+                <tr>
+                <td>{{ $exercise->exer_name }}</td>
+                <td>{{ $exercise->muscleType->muscle_name }}</td>
+                <td>{{ $exercise->exer_description }}</td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
     </section>
 </body>
 </html>
