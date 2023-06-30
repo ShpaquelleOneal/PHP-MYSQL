@@ -64,7 +64,12 @@
 
                     <tr>
                         <td></td>
-                        <td>{{ $training->exercise_name }}</td>
+                        <td>
+                            @php
+                                $exercise = $exercises->firstWhere('id', $training->exercise_id);
+                            @endphp
+                            {{ $exercise->exer_name }}
+                        </td>
                         <td>{{ $training->duration }}</td>
                     </tr>
                 @endforeach

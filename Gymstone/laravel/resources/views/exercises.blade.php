@@ -16,13 +16,6 @@
                     <li><a href="{{ route('profile') }}">Profile</a></li>
                     <li><a class="active" href="{{ route('exercises') }}">Exercises</a></li>
                     <li><a href="{{ route('history') }}">Training History</a></li>
-                    <form action="{{ route('change-language') }}" method="POST" id="languageForm">
-                        @csrf
-                        <select name="language" onchange="this.form.submit()">
-                            <option value="en" {{ app()->getLocale() === 'en' ? 'selected' : '' }}>ENG</option>
-                            <option value="ru" {{ app()->getLocale() === 'ru' ? 'selected' : '' }}>RUS</option>
-                        </select>
-                    </form>
                 </ul>
             </nav>
         </div>

@@ -9,6 +9,8 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+
 
 class User extends Authenticatable
 {
@@ -17,6 +19,11 @@ class User extends Authenticatable
     //use HasProfilePhoto;
     use Notifiable;
     //use TwoFactorAuthenticatable;
+
+    public function history()
+    {
+        return $this->hasMany(History::class);
+    }
 
     /**
      * The attributes that are mass assignable.

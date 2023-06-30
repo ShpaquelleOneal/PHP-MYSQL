@@ -17,13 +17,11 @@
             @csrf
             <table class="training-table">
                 <tr>
-                    <th>Training ID</th>
-                    <th>Exercise</th>
+                    <th>Exercises</th>
                     <th>Duration (hours)</th>
-                    <th>Action</th>
                 </tr>
                 <tr>
-                    <td>
+                    <td style="display: none;">
                         <!-- Input field to display the next available training ID -->
                         <input type="text" name="training_id[]" value="{{ $trainingId }}" readonly>
                     </td>
@@ -47,7 +45,7 @@
             </table>
         
             <button type="button" id="addRowBtn">Add Row</button>
-            <button type="submit">Add Records</button>
+            <button type="submit">Add Training</button>
         </form>
         
         <script>
