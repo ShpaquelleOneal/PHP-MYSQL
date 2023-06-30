@@ -23,12 +23,54 @@
 
     <section class="history">
 
-        <h2>All Exercises</h2>
-        <ul class="training-plans">
-            <li>.</li>
-            <li>.</li>
-            <li>.</li>
-        </ul>
+        <h2>Training History</h2>
+        <a href="{{ route('history.new') }}" class="add-training-btn"><h2>Add Training</h2></a>
+        
+        @if ($history->isEmpty())
+            <p>No training history found.</p>
+        @else
+            @php
+                $currentTrainingId = null;
+                $reversedHistory = $history->reverse(); // Reverse the history collection
+            @endphp
+
+            <table class="training-table">
+                <tr>
+                    <th>Training Number</th>
+                    <th>Exercise</th>
+                    <th>Duration (hours)</th>
+                </tr>
+
+                @foreach($reversedHistory as $training)
+                    @if ($currentTrainingId !== $training->training_id)
+                        @php
+                            $currentTrainingId = $training->training_id;
+                            $exerciseCount = $reversedHistory->where('training_id', $currentTrainingId)->count();
+                            $totalDuration = $reversedHistory->where('training_id', $currentTrainingId)->sum('duration');
+                        @endphp
+
+                        <tr>
+                            <td colspan="1" class="training-id-row">
+                                Training Number: {{ $currentTrainingId }} 
+                            </td>
+                            <td colspan="1" class="training-id-row">
+                                Total Exercises: {{ $exerciseCount }}
+                            </td>
+                            <td colspan="1" class="training-id-row">
+                                Total Duration: {{ $totalDuration }} hours
+                            </td>
+                        </tr>
+                    @endif
+
+                    <tr>
+                        <td></td>
+                        <td>{{ $training->exercise_name }}</td>
+                        <td>{{ $training->duration }}</td>
+                    </tr>
+                @endforeach
+
+            </table>
+        @endif
 
     </section>
 </body>

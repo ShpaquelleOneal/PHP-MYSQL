@@ -8,5 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class History extends Model
 {
     use HasFactory;
+
+    public function trainingsStored()
+    {
+        return $this->belongsTo(User::class, 'id');
+    }
     
 }

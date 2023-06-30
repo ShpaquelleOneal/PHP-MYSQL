@@ -206,3 +206,22 @@ tbody tr:hover {
     outline: none;
     box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2);
   }
+
+  /* CSS code for fancy buttons in indigo color */
+button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: indigo;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+button:hover {
+    background-color: #6c63ff; /* Lighter shade of indigo for hover effect */
+  }
